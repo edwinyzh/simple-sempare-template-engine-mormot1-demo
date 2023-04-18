@@ -9,7 +9,7 @@ type
   // Note: TSQLRestServerFullMemory has no database support
   TMyRestServer = class(TSQLRestServerFullMemory)
   published
-    procedure Home(Ctxt: TSQLRestServerURIContext);
+    procedure Home(aContext: TSQLRestServerURIContext);
   end;
 
   TPageData = record
@@ -18,13 +18,13 @@ type
     WebServrName: string;
   end;
 
-procedure TMyRestServer.Home(Ctxt: TSQLRestServerURIContext);
+procedure TMyRestServer.Home(aContext: TSQLRestServerURIContext);
 var
   htmlTmpl, htmlResult: string;
   pageData: TPageData;
 begin
   // Populate the page data
-  pageData.UserAgent := Ctxt.UserAgent;
+  pageData.UserAgent := aContext.UserAgent;
   pageData.TmplEngineName := 'Sempare Template Engine for Delphi';
   pageData.WebServrName := 'mORMot v1';
 
@@ -35,7 +35,7 @@ begin
   htmlResult := Template.Eval(htmlTmpl, pageData);
 
   // Return the html page to the web browser
-  Ctxt.Returns(htmlResult, HTTP_SUCCESS, HTML_CONTENT_TYPE_HEADER);
+  aContext.Returns(htmlResult, HTTP_SUCCESS, HTML_CONTENT_TYPE_HEADER);
 end;
 
 const
