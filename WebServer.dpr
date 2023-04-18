@@ -56,7 +56,7 @@ begin
   WriteLn('Demonstrating mORMot 1''s method-based service serving html page rendered by Sempare Template Engine.');
   WriteLn('');
   WriteLn('Please visit ' + cWebServerAddr);
-  write('Press [Enter] to close the web server.');
+  WriteLn('Press [Enter] to close the web server.');
   ShellExecute(0, 'open', PChar(cWebServerAddr), nil, nil, SW_SHOWNORMAL);
   ReadLn;
 
